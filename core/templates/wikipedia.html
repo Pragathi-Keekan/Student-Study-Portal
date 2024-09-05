@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Wikipedia{% endblock %}
+{% block content %}
+<style>
+    .search-section {
+        text-align: center;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        max-width: 600px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .search-input {
+        width: 80%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .search-btn {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .content-section {
+        margin-top: 20px;
+    }
+
+    .custom-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .custom-header h2 {
+        margin: 0;
+    }
+
+    .description {
+        margin: 0;
+        padding: 10px;
+        text-align: left;
+    }
+
+    hr {
+        margin: 10px 0;
+        border: none;
+        border-top: 1px solid #ccc;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 10px;
+    }
+
+    .options-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .options-list li {
+        margin-bottom: 5px;
+    }
+</style>
+
+<section class='search-section'>
+    <h2>Search articles in Wikipedia</h2>
+    <p>Enter the search query to obtain the results</p>
+
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input class="search-input" type="text" name="search_query" placeholder="Enter search query">
+            <input class="search-btn" type="submit" value="Submit">
+        </form>
+    </div>
+
+    {% if error_message %}
+    <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+
+    {% if options %}
+    <p class="error-message">Ambiguous search term. Please choose from the options below:</p>
+    <ul class="options-list">
+        {% for option in options %}
+        <li><a href="?search_query={{ option }}">{{ option }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if title %}
+    <div class="container">
+        <div class="content-section p-0 mt-5">
+            <a href="{{ link }}" class="p-0 m-0" target="_blank">
+                <div class="custom-header">
+                    <h2>{{ title }}</h2>
+                    <h6>{{ link }}</h6>
+                </div>
+            </a>
+
+            <hr class="p-0 m-0">
+            <p class="description m-5 p-5">
+                {{ details|safe }}
+            </p>
+            <hr>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock content %}

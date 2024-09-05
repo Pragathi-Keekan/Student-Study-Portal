@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Homework{% endblock  %}
+{% block content %}
+
+
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.table th {
+    background-color: #333;
+    color: #fff;
+}
+
+.table tbody tr:hover {
+    background-color: #f4f4f4;
+}
+
+.form-check-label {
+    color: #333;
+    font-weight: bold;
+}
+
+.btn-outline-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border: 2px solid #17a2b8;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline-info:hover {
+    background-color: #138496;
+    border-color: #138496;
+}
+
+.btn-outline-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 2px solid #dc3545;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+textarea.form-control {
+    height: 150px;
+}
+
+</style>
+
+
+<div class="container">
+    {% if homeworks %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Subject</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for homework in homeworks %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ homework.subject }}</td>
+                <td>{{ homework.title }}</td>
+                <td>{{ homework.description }}</td>
+                <td>{{ homework.due }}</td>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="homework{{ homework.pk }}" {% if homework.is_finished %} checked {% endif %} disabled>
+                        <label class="form-check-label" for="homework{{ homework.pk }}">
+                            {% if homework.is_finished %}
+                                Completed
+                            {% else %}
+                                Pending
+                            {% endif %}
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'delete_homework' homework.pk %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4>No homeworks found! Create some.</h4>
+    {% endif %}
+</div>
+
+
+<div class="container">
+    <form method="POST" action="{% url 'homework' %}">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Add Homework</legend>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="Enter subject" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" class="form-control" placeholder="Enter title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" class="form-control" rows="3" placeholder="Enter description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="due">Due:</label>
+                <input type="date" name="due" id="due" class="form-control" required>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock content %}

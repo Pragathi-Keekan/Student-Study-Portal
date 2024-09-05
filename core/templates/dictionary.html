@@ -1,0 +1,100 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Dictionary{% endblock  %}
+{% block content %}
+<style>
+    .search-section {
+        text-align: center;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        max-width: 600px;
+    }
+
+    .search-input {
+        width: 80%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .search-btn {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .content-section {
+        margin-top: 20px;
+    }
+
+    .custom-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .custom-header h2 {
+        margin: 0;
+    }
+
+    .custom-header audio {
+        margin-right: 10px;
+    }
+
+    .float-left {
+        float: left;
+        width: 100%;
+    }
+
+    hr {
+        margin: 10px 0;
+        border: none;
+        border-top: 1px solid #ccc;
+    }
+</style>
+
+<section class='search-section'>
+    <h2>Student Dictionary</h2>
+    <p>Enter any word to get the phonetics and definition</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input class="search-input" type="text" name="word" placeholder="Enter word">
+        <input class="search-btn" type="submit" value="Submit">
+    </form>
+
+    {% if input %}
+        {% if word_data %}
+            <div class="content-section p-0 mt-5">
+                <div class="custom-header">
+                    <h2>{{ word_data.word }}</h2>
+                    <h6>{{ word_data.phonetic }}</h6>
+                    <audio id="player" src="{{ word_data.audio }}"></audio>
+                    <div>
+                        <a onclick="document.getElementById('player').play()"><i class='fa fa-volume-up fa-2x'></i></a>
+                    </div>
+                </div>
+                <hr class="p-0 m-0">
+                {% for meaning in word_data.meanings %}
+                    <p class="float-left">
+                        <h4>Part of Speech: {{ meaning.partOfSpeech }}</h4>
+                        <h4>Definition: {{ meaning.definitions.0.definition }}</h4>
+                        
+                    </p>
+                    <hr>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h2>Sorry, no data found for "{{ input }}"</h2>
+        {% endif %}
+    {% endif %}
+</section>
+
+
+{% endblock content %}

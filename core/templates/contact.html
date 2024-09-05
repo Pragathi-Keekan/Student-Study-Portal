@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Icons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ccc;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+            margin: 0 5px;
+        }
+
+        ul li a .fa {
+            font-size: 40px;
+            color: #262626;
+            line-height: 80px;
+            transition: .5s;
+            padding-right: 14px;
+        }
+
+        ul li a span {
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 30px;
+            color: #262626;
+            letter-spacing: 4px;
+            transition: .5s;
+        }
+
+        ul li a {
+            text-decoration: none;
+            display: block;
+            width: 210px;
+            height: 80px;
+            background: #fff;
+            text-align: left;
+            padding-left: 20px;
+            transform: rotate(-30deg) skew(25deg) translate(0, 0);
+            transition: .5s;
+            box-shadow: -20px 20px 10px rgba(0, 0, 0, .5);
+        }
+
+        ul li a:before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -20px;
+            height: 100%;
+            width: 20px;
+            background: #b1b1b1;
+            transform: .5s;
+            transform: rotate(0deg) skewY(-45deg);
+        }
+
+        ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: -10px;
+            height: 20px;
+            width: 100%;
+            background: #b1b1b1;
+            transform: .5s;
+            transform: rotate(0deg) skewX(-45deg);
+        }
+
+        ul li a:hover {
+            transform: rotate(-30deg) skew(25deg) translate(20px, -15px);
+            box-shadow: -50px 50px 50px rgba(0, 0, 0, .5);
+        }
+
+        ul li:hover .fa {
+            color: #fff;
+        }
+
+        ul li:hover span {
+            color: #fff;
+        }
+
+        ul li:hover:nth-child(1) a {
+            background: #3b5998;
+        }
+
+        ul li:hover:nth-child(1) a:before {
+            background: #365492;
+        }
+
+        ul li:hover:nth-child(1) a:after {
+            background: #4a69ad;
+        }
+
+        ul li:hover:nth-child(2) a {
+            background: #333;
+        }
+
+        ul li:hover:nth-child(2) a:before {
+            background: #444;
+        }
+
+        ul li:hover:nth-child(2) a:after {
+            background: #555;
+        }
+
+        ul li:hover:nth-child(3) a {
+            background: #ff0000;
+        }
+
+        ul li:hover:nth-child(3) a:before {
+            background: #cc0000;
+        }
+
+        ul li:hover:nth-child(3) a:after {
+            background: #ff4d4d;
+        }
+
+        ul li:hover:nth-child(4) a {
+            background: #0077b5;
+        }
+
+        ul li:hover:nth-child(4) a:before {
+            background: #006699;
+        }
+
+        ul li:hover:nth-child(4) a:after {
+            background: #0099cc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #fff;
+            color: #262626;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #262626;
+            transition: .3s;
+        }
+
+        .footer-btn:hover {
+            background: #262626;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <ul>
+            <li>
+                <a href="https://web.facebook.com/wasimranjhaa" target="_blank">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <span> - Facebook</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/CodeWithRanjHa" target="_blank">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                    <span> - GitHub</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/channel/UCnf5YYtH3mgjex2hx1UWGAg" target="_blank">
+                    <i class="fa fa-youtube" aria-hidden="true"></i>
+                    <span> - YouTube</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/wasim-nawaz/" target="_blank">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    <span> - LinkedIn</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <footer>
+        <a href="/" class="footer-btn">Home</a>
+    </footer>
+</body>
+</html>

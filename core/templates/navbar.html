@@ -1,0 +1,115 @@
+<style>
+  /* Resetting body styles */
+  body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Styles for navigation bar */
+  .navigationWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+    background-color: #222;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+
+  .logoWrapper {
+    display: flex;
+    margin-left: 10px;
+  }
+
+  .stylish {
+    font-weight: bold;
+  }
+
+  .logo {
+    padding-left: 4px;
+    color: #ea4f4c;
+  }
+
+  .navigation {
+    display: flex;
+    list-style-type: none;
+  }
+
+  .parent {
+    position: relative;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+
+  .link {
+    display: block;
+    padding: 10px 6px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .link:hover {
+    color: #ea4f4c;
+  }
+
+  .fa-minus,
+  .fa-plus {
+    margin-right: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .subnavigation {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    display: none;
+    width: 200px;
+    padding: 10px;
+    background-color: #222;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .subnavigation li {
+    list-style-type: none;
+    margin-bottom: 5px;
+  }
+
+  .subnavigation li a {
+    display: block;
+    padding: 5px 0;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .subnavigation li a:hover {
+    color: #ea4f4c;
+  }
+
+  /* Active styles */
+  .active.parent .subnavigation {
+    display: block;
+  }
+</style>
+
+
+
+<nav class="navigationWrapper">
+    <div class="logoWrapper">
+      <span class="stylish">Student Study</span>
+      <span class="logo">PORTAL</span>
+    </div>
+    <ul class="navigation">
+      <li class="parent"><a class="link" href="{% url "home" %}">Home</a></li>
+      
+      
+      <li class="parent"><a class="link" href="{% url "contactus" %}">Contact</a></li>
+    </ul>
+  </nav>
+  
